@@ -5,7 +5,15 @@ excludes:
     comment: "Packages for testing only."
   - pattern: "dependencySources"
     reason: "TEST_DEPENDENCY_OF"
-    comment: "Packages for testing only."
+    comment: "New scopes appearing with Kotline 2.0 still having issues with variant selection"
   - pattern: "testDependencySources"
     reason: "TEST_DEPENDENCY_OF"
-    comment: "Packages for testing only."
+    comment: "New scopes appearing with Kotline 2.0 still having issues with variant selection"
+resolutions:
+  issues:
+  - message: ".*org.gradle.internal.component.resolution.failure.exception.VariantSelectionException.*consumer needed documentation.*"
+    reason: "BUILD_TOOL_ISSUE"
+    comment: >-
+      Gradle has issues with variant selection for configurations dependencySources and testDependencySources in Kotlin 2.0.
+      For other Gradle configurations the issue does not exist and the dependencies are reported (variant selection works). 
+      See https://github.com/oss-review-toolkit/ort/issues/8755 for more details.
